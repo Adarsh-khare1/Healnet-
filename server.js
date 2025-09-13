@@ -23,6 +23,7 @@ const allowedOrigins = [
   "https://healnet-ten.vercel.app",
 ];
 
+// This single cors middleware handler is sufficient for both regular and preflight requests.
 app.use(cors({
   origin: function(origin, callback) {
     if (!origin) return callback(null, true); // allow server tools like Postman
@@ -30,17 +31,11 @@ app.use(cors({
     callback(new Error(`CORS blocked for origin ${origin}`));
   },
   credentials: true,
-  methods: ["GET","POST","OPTIONS","PATCH"],
-  allowedHeaders: ["Content-Type","Authorization"]
+  methods: ["GET", "POST", "OPTIONS", "PATCH"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
-// Handle preflight requests
-app.options("*", cors({
-  origin: allowedOrigins,
-  credentials: true,
-  methods: ["GET","POST","OPTIONS","PATCH"],
-  allowedHeaders: ["Content-Type","Authorization"]
-}));
+// REMOVED: app.options("*", ...) as it is redundant and causes the PathError.
 
 // ----------------------
 // Middleware
