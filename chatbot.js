@@ -7,7 +7,7 @@ const sendBtn = document.getElementById("sendBtn");
 let totalTokensUsed = 0;
 
 // ----------------------
-// Helper: append message to chat
+// Helper: append message
 // ----------------------
 function appendMessage(text, sender = "bot") {
   const msg = document.createElement("div");
@@ -51,7 +51,6 @@ async function sendMessage() {
   const msg = userInput.value.trim();
   if (!msg) return;
 
-  // Append user message
   appendMessage(msg, "user");
   userInput.value = "";
 
@@ -67,7 +66,7 @@ async function sendMessage() {
     const data = await res.json();
     appendMessage(data.reply, "bot");
 
-    // Update tokens from backend
+    // Update total tokens from backend
     totalTokensUsed = data.totalTokens || totalTokensUsed;
     updateTokenDisplay();
   } catch (err) {
@@ -79,12 +78,10 @@ async function sendMessage() {
 // ----------------------
 // Event listeners
 // ----------------------
-// Send on Enter
 userInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") sendMessage();
 });
 
-// Send on button click
 sendBtn.addEventListener("click", sendMessage);
 
 // ----------------------
