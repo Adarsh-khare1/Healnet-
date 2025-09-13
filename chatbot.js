@@ -24,13 +24,11 @@ async function sendMessage() {
   userInput.value = "";
 
   try {
-     const BACKEND_URL = "https://healnet-0eyd.onrender.com";
-
-const res = await fetch(`${BACKEND_URL}/chat`, {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ message: msg }),
-});
+     const res = await fetch("https://healnet-0eyd.onrender.com/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: msg }),
+    });
 
     if (!res.ok) throw new Error("Server error");
 
@@ -71,4 +69,5 @@ function resetTokens() {
   chatBody.appendChild(resetDiv);
   chatBody.scrollTop = chatBody.scrollHeight;
 }
+
 
