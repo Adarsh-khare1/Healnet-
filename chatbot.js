@@ -1,10 +1,14 @@
+// Get DOM elements
 const chatBody = document.getElementById("chatBody");
 const userInput = document.getElementById("userInput");
 const sendBtn = document.getElementById("sendBtn");
 
+// Total tokens from backend
 let totalTokensUsed = 0;
 
-// Append message helper
+// ----------------------
+// Helper: append message to chat
+// ----------------------
 function appendMessage(text, sender = "bot") {
   const msg = document.createElement("div");
   msg.className = sender === "user" ? "user-message" : "bot-message";
@@ -13,7 +17,22 @@ function appendMessage(text, sender = "bot") {
   chatBody.scrollTop = chatBody.scrollHeight;
 }
 
+// ----------------------
+// Display total tokens
+// ----------------------
+function updateTokenDisplay() {
+  let tokenDiv = document.querySelector(".token-info");
+  if (!tokenDiv) {
+    tokenDiv = document.createElement("div");
+    tokenDiv.className = "token-info";
+    chatBody.appendChild(tokenDiv);
+  }
+  tokenDiv.textContent = `Total tokens used: ${totalTokensUsed}`;
+}
+
+// ----------------------
 // Fetch total tokens from backend
+// ----------------------
 async function fetchTotalTokens() {
   try {
     const res = await fetch("https://healnet-0eyd.onrender.com/tokens");
@@ -25,18 +44,14 @@ async function fetchTotalTokens() {
   }
 }
 
-// Update token info in chat
-function updateTokenDisplay() {
-  const tokenDiv = document.querySelector(".token-info") || document.createElement("div");
-  tokenDiv.className = "token-info";
-  tokenDiv.textContent = `Total tokens used: ${totalTokensUsed}`;
-  if (!tokenDiv.parentNode) chatBody.appendChild(tokenDiv);
-}
-
-// Send message
+// ----------------------
+// Send message to backend
+// ----------------------
 async function sendMessage() {
   const msg = userInput.value.trim();
   if (!msg) return;
+
+  // Append user message
   appendMessage(msg, "user");
   userInput.value = "";
 
@@ -52,7 +67,8 @@ async function sendMessage() {
     const data = await res.json();
     appendMessage(data.reply, "bot");
 
-    totalTokensUsed = data.totalTokens;
+    // Update tokens from backend
+    totalTokensUsed = data.totalTokens || totalTokensUsed;
     updateTokenDisplay();
   } catch (err) {
     console.error("Chat error:", err);
@@ -60,6 +76,9 @@ async function sendMessage() {
   }
 }
 
+// ----------------------
+// Event listeners
+// ----------------------
 // Send on Enter
 userInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") sendMessage();
@@ -68,5 +87,7 @@ userInput.addEventListener("keypress", (e) => {
 // Send on button click
 sendBtn.addEventListener("click", sendMessage);
 
-// Fetch tokens on page load
+// ----------------------
+// Initialize
+// ----------------------
 fetchTotalTokens();
