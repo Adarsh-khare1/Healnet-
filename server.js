@@ -23,6 +23,17 @@ const allowedOrigins = [
   "https://healnet-ten.vercel.app",
 ];
 
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log("✅ MongoDB connected"))
+.catch(err => {
+  console.error("❌ MongoDB connection error:", err);
+  process.exit(1); // stop server if DB fails
+});
+
+
 app.use(cors({
   origin: function(origin, callback){
     if(!origin) return callback(null, true); // allow Postman, server-to-server
@@ -149,3 +160,4 @@ app.get("/tokens", async (req, res) => {
 
 // ----------------------
 app.listen(PORT, () => console.log(`🚀 Chatbot backend running on port ${PORT}`));
+
