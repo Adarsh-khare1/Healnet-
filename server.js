@@ -16,33 +16,30 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ----------------------
-// CORS
+// CORS Configuration
 // ----------------------
 const allowedOrigins = [
   "http://localhost:3000",
   "https://healnet-ten.vercel.app",
 ];
 
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log("✅ MongoDB connected"))
-.catch(err => {
-  console.error("❌ MongoDB connection error:", err);
-  process.exit(1); // stop server if DB fails
-});
-
-
 app.use(cors({
-  origin: function(origin, callback){
-    if(!origin) return callback(null, true); // allow Postman, server-to-server
-    if(allowedOrigins.indexOf(origin) === -1){
-      return callback(new Error(`CORS blocked for origin ${origin}`), false);
-    }
-    return callback(null, true);
+  origin: function(origin, callback) {
+    if (!origin) return callback(null, true); // allow server tools like Postman
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    callback(new Error(`CORS blocked for origin ${origin}`));
   },
-  credentials: true
+  credentials: true,
+  methods: ["GET","POST","OPTIONS","PATCH"],
+  allowedHeaders: ["Content-Type","Authorization"]
+}));
+
+// Handle preflight requests
+app.options("*", cors({
+  origin: allowedOrigins,
+  credentials: true,
+  methods: ["GET","POST","OPTIONS","PATCH"],
+  allowedHeaders: ["Content-Type","Authorization"]
 }));
 
 // ----------------------
@@ -64,6 +61,7 @@ mongoose.connect(process.env.MONGO_URI, {
   process.exit(1);
 });
 
+// Token Schema
 const TokenSchema = new mongoose.Schema({
   totalTokens: { type: Number, default: 0 },
 });
@@ -113,7 +111,6 @@ app.post("/chat", async (req, res) => {
   if (!message) return res.status(400).json({ reply: "Provide a message", tokensUsed: 0 });
 
   try {
-    // GPT-4O mini reply
     const gptReply = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [{ role: "user", content: message }],
@@ -122,7 +119,7 @@ app.post("/chat", async (req, res) => {
     let reply = gptReply?.choices?.[0]?.message?.content || "No reply";
     let tokensUsed = gptReply?.usage?.total_tokens || 0;
 
-    // Optional: SerpAPI fallback for live queries
+    // Optional SerpAPI fallback
     if (/I don't know|cannot provide|Sorry/i.test(reply) || /today|latest|weather|news|update/i.test(message)) {
       const serpData = await fetchSerpData(message);
       if (serpData) {
@@ -138,14 +135,14 @@ app.post("/chat", async (req, res) => {
       }
     }
 
-    // Save global token count
+    // Save global tokens
     const tokenDoc = await Token.findOne();
     tokenDoc.totalTokens += tokensUsed;
     await tokenDoc.save();
 
     res.json({ reply, tokensUsed, totalTokens: tokenDoc.totalTokens });
   } catch (err) {
-    console.error(err.response?.data || err.message || err);
+    console.error("Chat error:", err.response?.data || err.message || err);
     res.status(500).json({ reply: "Error processing request", tokensUsed: 0 });
   }
 });
@@ -160,4 +157,3 @@ app.get("/tokens", async (req, res) => {
 
 // ----------------------
 app.listen(PORT, () => console.log(`🚀 Chatbot backend running on port ${PORT}`));
-
