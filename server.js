@@ -30,7 +30,10 @@ if (!process.env.SERP_API_KEY) {
 }
 
 // --- Middleware ---
-app.use(cors());
+app.use(cors({
+  origin: "https://healnet-ten.vercel.app/",
+  credentials: true,
+}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -135,3 +138,4 @@ app.post("/chat", async (req, res) => {
 app.listen(PORT, () =>
   console.log(`🚀 Chatbot running on http://localhost:${PORT}`)
 );
+
