@@ -1,12 +1,10 @@
-// chatbot.js
 const chatBody = document.getElementById("chatBody");
 const userInput = document.getElementById("userInput");
 const sendBtn = document.getElementById("sendBtn");
 
-// Local session token count
-let totalTokensUsed = parseInt(localStorage.getItem("totalTokensUsed")) || 0;
+let totalTokensUsed = 0;
 
-// Append messages
+// Append message helper
 function appendMessage(text, sender = "bot") {
   const msg = document.createElement("div");
   msg.className = sender === "user" ? "user-message" : "bot-message";
@@ -15,16 +13,35 @@ function appendMessage(text, sender = "bot") {
   chatBody.scrollTop = chatBody.scrollHeight;
 }
 
+// Fetch total tokens from backend
+async function fetchTotalTokens() {
+  try {
+    const res = await fetch("https://healnet-0eyd.onrender.com/tokens");
+    const data = await res.json();
+    totalTokensUsed = data.totalTokens || 0;
+    updateTokenDisplay();
+  } catch (err) {
+    console.error("Failed to fetch total tokens", err);
+  }
+}
+
+// Update token info in chat
+function updateTokenDisplay() {
+  const tokenDiv = document.querySelector(".token-info") || document.createElement("div");
+  tokenDiv.className = "token-info";
+  tokenDiv.textContent = `Total tokens used: ${totalTokensUsed}`;
+  if (!tokenDiv.parentNode) chatBody.appendChild(tokenDiv);
+}
+
 // Send message
 async function sendMessage() {
   const msg = userInput.value.trim();
   if (!msg) return;
-
   appendMessage(msg, "user");
   userInput.value = "";
 
   try {
-     const res = await fetch("https://healnet-0eyd.onrender.com/chat", {
+    const res = await fetch("https://healnet-0eyd.onrender.com/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: msg }),
@@ -33,41 +50,33 @@ async function sendMessage() {
     if (!res.ok) throw new Error("Server error");
 
     const data = await res.json();
-
     appendMessage(data.reply, "bot");
 
-    // Update tokens
-    totalTokensUsed += data.tokensUsed;
-    localStorage.setItem("totalTokensUsed", totalTokensUsed);
-
-    // Show token info
-    const tokenDiv = document.createElement("div");
-    tokenDiv.className = "token-info";
-    tokenDiv.textContent = `Your tokens: ${totalTokensUsed} | Global tokens: ${data.totalTokens}`;
-    chatBody.appendChild(tokenDiv);
-
-    chatBody.scrollTop = chatBody.scrollHeight;
+    totalTokensUsed = data.totalTokens; // update from backend
+    updateTokenDisplay();
   } catch (err) {
     console.error("Chat error:", err);
     appendMessage("⚠️ Sorry, I’m having trouble right now. Please try again.", "bot");
   }
 }
 
-// Events
+// Send on Enter
 userInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") sendMessage();
 });
+
+// Send on button click
 sendBtn.addEventListener("click", sendMessage);
 
-// Reset
+// Reset tokens (optional)
 function resetTokens() {
-  totalTokensUsed = 0;
-  localStorage.setItem("totalTokensUsed", 0);
-  const resetDiv = document.createElement("div");
-  resetDiv.className = "token-info";
-  resetDiv.textContent = "Session tokens reset to 0";
-  chatBody.appendChild(resetDiv);
-  chatBody.scrollTop = chatBody.scrollHeight;
+  fetch("https://healnet-0eyd.onrender.com/tokens", { method: "PATCH" }) // optional endpoint if you add
+    .then(() => {
+      totalTokensUsed = 0;
+      updateTokenDisplay();
+      appendMessage("Tokens reset to 0", "bot");
+    });
 }
 
-
+// Fetch tokens on page load
+fetchTotalTokens();
