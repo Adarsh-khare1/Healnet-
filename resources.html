@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resource Hub</title>
+  <link rel="stylesheet" href="resource_hub.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="logo">Healnet</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="resources.html">Resource Hub</a></li>
+    <li><a href="appointment.html">Counseling</a></li>
+    <li><a href="forum.html">Peer Forum</a></li>
+    <li><a href="counselor.html">Counselor Dashboard</a></li>
+    <li><a href="loginadmin.html">Admin</a></li>
+  </ul>
+</nav>
+<h1 class="page-title">Resource Hub</h1>
+
+<!-- Category Tabs -->
+<div class="tabs">
+  <button class="tab-btn active" onclick="openTab('awareness')">Awareness</button>
+  <button class="tab-btn" onclick="openTab('coping')">Coping</button>
+  <button class="tab-btn" onclick="openTab('therapist')">Therapist</button>
+  <button class="tab-btn" onclick="openTab('motivation')">Motivation</button>
+  <button class="tab-btn" onclick="openTab('lifestyle')">Lifestyle</button>
+  <button class="tab-btn" onclick="openTab('crisis')">Crisis</button>
+  <button class="tab-btn" onclick="openTab('groups')">Groups</button>
+</div>
+
+<!-- Awareness -->
+<div id="awareness" class="tab-content active">
+  <h2>Awareness & Education</h2>
+  <div class="resource-grid">
+    <!-- Videos -->
+    <div class="card" onclick="openModal('https://www.youtube.com/embed/ZbZSe6N_BXs')">
+      <img src="https://img.youtube.com/vi/ZbZSe6N_BXs/0.jpg" alt="Video">
+      <p>🎥 Happiness Talk</p>
+    </div>
+    <div class="card" onclick="openModal('https://www.youtube.com/embed/IOrmS8vJDQw')">
+      <img src="https://img.youtube.com/vi/IOrmS8vJDQw/0.jpg" alt="Video">
+      <p>🎥 Stress Relief</p>
+    </div>
+
+    <!-- Audios -->
+    <div class="card">
+      <img src="images/audio-thumb.png" alt="Audio">
+      <p>🎵 Awareness Audio 1</p>
+      <audio controls>
+        <source src="audio/awareness1.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <!-- PDFs -->
+    <a href="pdfs/awareness1.pdf" target="_blank" class="card">
+      <img src="images/pdf-thumb.png" alt="PDF">
+      <p>📄 Awareness Guide 1</p>
+    </a>
+  </div>
+</div>
+
+<!-- Coping -->
+<div id="coping" class="tab-content">
+  <h2>Coping & Self-Help</h2>
+  <div class="resource-grid">
+    <div class="card" onclick="openModal('https://www.youtube.com/embed/rkZl2gsLUp4')">
+      <img src="https://img.youtube.com/vi/rkZl2gsLUp4/0.jpg" alt="Video">
+      <p>🎥 Meditation</p>
+    </div>
+    <div class="card">
+      <img src="images/audio-thumb.png" alt="Audio">
+      <p>🎵 Coping Audio</p>
+      <audio controls>
+        <source src="audio/coping1.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+    <a href="pdfs/coping1.pdf" target="_blank" class="card">
+      <img src="images/pdf-thumb.png" alt="PDF">
+      <p>📄 Coping Guide</p>
+    </a>
+  </div>
+</div>
+
+<!-- Therapist -->
+<div id="therapist" class="tab-content">
+  <h2>Therapist-Led Guidance</h2>
+  <div class="resource-grid">
+    <div class="card" onclick="openModal('https://www.youtube.com/embed/8jPQjjsBbIc')">
+      <img src="https://img.youtube.com/vi/8jPQjjsBbIc/0.jpg" alt="Video">
+      <p>🎥 Professional Talk</p>
+    </div>
+    <a href="pdfs/therapist1.pdf" target="_blank" class="card">
+      <img src="images/pdf-thumb.png" alt="PDF">
+      <p>📄 Therapy Notes</p>
+    </a>
+  </div>
+</div>
+
+<!-- Motivation -->
+<div id="motivation" class="tab-content">
+  <h2>Motivation & Hope</h2>
+  <div class="resource-grid">
+    <div class="card" onclick="openModal('https://www.youtube.com/embed/d6wRkzCW5qI')">
+      <img src="https://img.youtube.com/vi/d6wRkzCW5qI/0.jpg" alt="Video">
+      <p>🎥 Inspirational Talk</p>
+    </div>
+    <div class="card">
+      <img src="images/audio-thumb.png" alt="Audio">
+      <p>🎵 Motivation Audio</p>
+      <audio controls>
+        <source src="audio/motivation1.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+    <a href="pdfs/motivation1.pdf" target="_blank" class="card">
+      <img src="images/pdf-thumb.png" alt="PDF">
+      <p>📄 Motivation Guide</p>
+    </a>
+  </div>
+</div>
+
+<!-- Lifestyle -->
+<div id="lifestyle" class="tab-content">
+  <h2>Lifestyle & Wellness</h2>
+  <div class="resource-grid">
+    <div class="card" onclick="openModal('https://www.youtube.com/embed/2ZKNLjHj4n8')">
+      <img src="https://img.youtube.com/vi/2ZKNLjHj4n8/0.jpg" alt="Video">
+      <p>🎥 Healthy Habits</p>
+    </div>
+    <a href="pdfs/lifestyle1.pdf" target="_blank" class="card">
+      <img src="images/pdf-thumb.png" alt="PDF">
+      <p>📄 Lifestyle Guide</p>
+    </a>
+  </div>
+</div>
+
+<!-- Crisis -->
+<div id="crisis" class="tab-content">
+  <h2>Crisis Support</h2>
+  <div class="resource-grid">
+    <a href="pdfs/crisis1.pdf" target="_blank" class="card">
+      <img src="images/pdf-thumb.png" alt="PDF">
+      <p>📄 Emergency Guide</p>
+    </a>
+  </div>
+</div>
+
+<!-- Groups -->
+<div id="groups" class="tab-content">
+  <h2>Specialized Groups</h2>
+  <div class="resource-grid">
+    <a href="pdfs/groups1.pdf" target="_blank" class="card">
+      <img src="images/pdf-thumb.png" alt="PDF">
+      <p>📄 Group Support Guide</p>
+    </a>
+  </div>
+</div>
+
+<!-- Video Modal -->
+<div id="videoModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div class="video-container">
+      <iframe id="videoFrame" src="" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+<a href="chatbot.html" id="chat-button" aria-label="Chat with CampusCare">
+  💬
+</a>
+
+<script src="resource_hub.js"></script>
+</body>
+</html>

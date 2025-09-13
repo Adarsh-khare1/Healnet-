@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Appointment - Healnet</title>
+  <link rel="stylesheet" href="appointment.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">Healnet</div>
+    
+    <nav id="navMenu">
+      <a href="index.html" class="active">Home</a>
+      <a href="screening.html">Screening</a>
+      <a href="resources.html">Resources</a>
+      <a href="forum.html">Peer Forum</a>
+      
+      <a href="appointment.html">Counseling</a>
+      <a href="admin.html">Admin</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>Book an Appointment</h2>
+    
+    <!-- Anonymous ID -->
+    <p><strong>Your Anonymous ID:</strong> <span id="anonId"></span></p>
+
+    <!-- Appointment Form -->
+    <form id="appointmentForm" class="appointment-form">
+      <label for="date">Select Date</label>
+      <input type="date" id="date" required>
+
+      <label for="time">Select Time</label>
+      <input type="time" id="time" required>
+
+      <label for="counselor">Select Counselor</label>
+      <select id="counselor" required>
+        <option value="">Choose...</option>
+        <option value="Dr. Sharma">Dr. Sharma</option>
+        <option value="Dr. Mehta">Dr. Mehta</option>
+        <option value="Dr. Gupta">Dr. Gupta</option>
+      </select>
+
+      <button type="submit">Book Appointment</button>
+    </form>
+
+    <!-- Confirmation Popup (hidden by default) -->
+    <div id="popup" class="popup hidden">
+      <p>✅ Appointment booked successfully!</p>
+      <button onclick="closePopup()">OK</button>
+    </div>
+<h3>Appointment History</h3>
+
+    <div id="userMessage" class="user-message hidden"></div>
+   <div id="appointmentHistory" class="last-appointment">
+     <p>No appointments found.</p>
+   </div>
+
+    
+    <!-- User Notification -->
+     <div id="userMessage" class="user-message hidden"></div>
+
+    
+  </div>
+
+  <script src="appointment.js"></script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg,#a8edea,#fed6e3); /* same as Screening page */
+}
+
+/* Navbar Styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #4a90e2;
+  padding: 12px 24px;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 18px;
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ffd700;
+}
+
+/* Section Styling */
+section {
+  max-width: 800px;
+  margin: 30px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Login Form */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+form label {
+  font-weight: bold;
+}
+
+form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+}
+
+form input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 4px rgba(74, 144, 226, 0.5);
+}
+
+button {
+  padding: 10px;
+  background: #4a90e2;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #357ABD;
+}
+
+/* Hidden class */
+.hidden {
+  display: none;
+}
+
+/* Appointment Cards */
+.appointment-card {
+  background: #f9f9f9;
+  padding: 15px;
+  margin: 12px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.05);
+}
+
+.appointment-card p {
+  margin: 5px 0;
+}
+
+.appointment-card button {
+  margin-right: 10px;
+  margin-top: 8px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.appointment-card button:first-of-type {
+  background: #28a745;
+}
+
+.appointment-card button:first-of-type:hover {
+  background: #218838;
+}
+
+.appointment-card button:last-of-type {
+  background: #dc3545;
+}
+
+.appointment-card button:last-of-type:hover {
+  background: #c82333;
+}
+
+/* Error Message */
+#loginError {
+  margin-top: 10px;
+  font-size: 14px;
+  color: red;
+}

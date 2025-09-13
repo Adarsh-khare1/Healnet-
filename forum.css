@@ -1,0 +1,212 @@
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg,#a8edea,#fed6e3); /* same as Screening page */
+}
+
+/* Navbar Styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #4a90e2;
+  padding: 12px 24px;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 18px;
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ffd700;
+}
+/* Layout */
+.forum-layout {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 40px auto;
+  gap: 30px;
+  padding: 0 20px;
+}
+.forum-container { flex: 3; }
+.sidebar {
+  flex: 1;
+  min-width: 250px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 12px;
+  padding: 20px;
+  height: fit-content;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  color: #333;
+}
+
+/* Forum Heading */
+.forum-container h1 {
+  margin-bottom: 10px;
+  font-size: 2em;
+}
+.subtitle {
+  margin-bottom: 25px;
+  color: #555;
+}
+
+/* =========================
+   Ask Question Box
+========================= */
+.ask-box {
+  background: rgba(255,255,255,0.95);
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  color: #333;
+}
+.ask-box h2 { margin-bottom: 10px; color: #333; }
+.ask-box textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #fff;
+  color: #333;
+  resize: vertical;
+  margin-bottom: 10px;
+  font-family: 'Inter', sans-serif;
+}
+.ask-actions {
+  display: flex;
+  gap: 10px;
+}
+.ask-actions select, .ask-actions button {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+.ask-actions select { flex: 1; background: #f0f0f0; color: #333; }
+.ask-actions button {
+  background: #3f51b5;
+  color: #fff;
+  transition: 0.3s;
+}
+.ask-actions button:hover { background: #303f9f; }
+
+/* =========================
+   Recent Questions Cards
+========================= */
+.question-card {
+  background: rgba(255,255,255,0.95);
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  padding: 18px 20px;
+  margin-bottom: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  opacity: 0;
+  transform: translateY(20px);
+  color: #333;
+}
+.question-card h3 { font-size: 1.1em; margin-bottom: 5px; }
+.question-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.question-card .tag {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #ffeb3b;
+  color: #333;
+  border-radius: 8px;
+  font-size: 0.8em;
+  margin-top: 5px;
+}
+.question-card .meta {
+  font-size: 0.85em;
+  color: #555;
+  margin-top: 5px;
+}
+.question-card .like-btn {
+  margin-top: 10px;
+  padding: 6px 12px;
+  background: #3f51b5;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.question-card .like-btn:hover { background: #303f9f; }
+.question-card .like-btn.liked { transform: scale(1.2); }
+
+/* Slide-in animation */
+.animate { animation: slideIn 0.5s forwards; }
+@keyframes slideIn { to { opacity: 1; transform: translateY(0); } }
+
+/* =========================
+   Sidebar
+========================= */
+.sidebar h3, .sidebar ul li { color: #333; margin-bottom: 8px; }
+.sidebar ul { list-style: none; padding: 0; }
+
+/* =========================
+   Responsive
+========================= */
+@media(max-width: 900px){
+  .forum-layout { flex-direction: column; }
+  .sidebar { min-width: 100%; margin-top: 20px; }
+  .menu-toggle { display: block; }
+  #navMenu { display: none; flex-direction: column; background: #3f51b5; }
+  #navMenu.active { display: flex; }
+  #navMenu a { margin: 12px 0; }
+}
+/* ==========================
+   Floating Chat Button
+========================== */
+#chat-button {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 70px;
+    height: 70px;
+    border-radius:50%;
+    background-color:#3f51b5;
+    color:white;
+    font-size:28px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 6px 18px rgba(0,0,0,0.25);
+    z-index:1000;
+    cursor:pointer;
+    transition: all 0.3s ease;
+    text-decoration:none;
+}
+#chat-button:hover {
+    transform: scale(1.15);
+    box-shadow:0 10px 25px rgba(0,0,0,0.35);
+    background-color:#303f9f;
+}

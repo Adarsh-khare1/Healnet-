@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peer Forum - Healnet</title>
+  <link rel="stylesheet" href="forum.css">
+  <!-- <link rel="stylesheet" href="style.css"> -->
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navbar -->
+<nav class="navbar">
+  <div class="logo">Healnet</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="resourcehub.html">Resource Hub</a></li>
+    <li><a href="appointment.html">Counseling</a></li>
+    <li><a href="forum.html">Peer Forum</a></li>
+    <li><a href="counselor.html">Counselor Dashboard</a></li>
+    <li><a href="loginadmin.html">Admin</a></li>
+  </ul>
+</nav>
+
+  <main class="forum-layout">
+    <!-- Main Forum Content -->
+    <section class="forum-container">
+      <h1>Peer Support Forum</h1>
+      <p class="subtitle">Ask questions, share experiences, and support each other 🌱</p>
+
+      <!-- Ask a Question -->
+      <section class="ask-box">
+        <h2>Ask a Question</h2>
+        <textarea id="questionInput" placeholder="Type your question..."></textarea>
+        <div class="ask-actions">
+          <select id="categorySelect">
+            <option value="General">General</option>
+            <option value="Stress">Stress</option>
+            <option value="Anxiety">Anxiety</option>
+            <option value="Exams">Exams</option>
+            <option value="Relationships">Relationships</option>
+          </select>
+          <button onclick="postQuestion()">Post</button>
+        </div>
+      </section>
+
+      <!-- Recent Questions -->
+      <section class="recent-questions">
+        <h2>Recent Questions</h2>
+        <div id="questionsList">
+          <!-- Example question -->
+          <div class="question-card animate">
+            <h3>How do you manage exam stress?</h3>
+            <span class="tag exams">Exams</span>
+            <p class="meta">Posted just now | <span class="likes">0 Likes</span></p>
+            <button class="like-btn" onclick="likeQuestion(this)">👍 Like</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h3>Trending Categories</h3>
+      <ul>
+        <li>📘 Exams</li>
+        <li>❤️ Relationships</li>
+        <li>💭 Anxiety</li>
+        <li>🔥 Stress</li>
+      </ul>
+
+      <h3>Top Questions</h3>
+      <ul>
+        <li>💡 How to stay motivated?</li>
+        <li>🧘 Best way to relax after classes?</li>
+        <li>📚 How to balance study & gym?</li>
+      </ul>
+    </aside>
+  </main>
+<!-- Page content above -->
+
+<!-- Floating Chat Button -->
+<a href="chatbot.html" id="chat-button" aria-label="Chat with CampusCare">
+  💬
+</a>
+
+
+  <script src="forum.js"></script>
+</body>
+</html>

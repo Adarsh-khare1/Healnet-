@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counselor Dashboard</title>
+  <link rel="stylesheet" href="counselor.css">
+</head>
+<body>
+  <!-- Navbar -->
+<nav class="navbar">
+  <div class="logo">Healnet</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="resourcehub.html">Resource Hub</a></li>
+    <li><a href="appointment.html">Counseling</a></li>
+    <li><a href="forum.html">Peer Forum</a></li>
+    <li><a href="counselor.html">Counselor Dashboard</a></li>
+    <li><a href="loginadmin.html">Admin</a></li>
+  </ul>
+</nav>
+
+  <!-- Login Form -->
+  <section id="loginSection">
+    <h2>Counselor Login</h2>
+    <form id="loginForm">
+      <label>Username:</label>
+      <input type="text" id="username" required>
+      <label>Password:</label>
+      <input type="password" id="password" required>
+      <button type="submit">Login</button>
+    </form>
+    <p id="loginError" style="color:red;"></p>
+  </section>
+
+  <!-- Dashboard (hidden until login success) -->
+  <section id="dashboardSection" class="hidden">
+    <h2>Counselor Dashboard</h2>
+    <p id="counselorName"></p>
+    <h3>My Appointments</h3>
+    <div id="counselorAppointments"></div>
+  </section>
+
+  <a href="chatbot.html" id="chat-button" aria-label="Chat with CampusCare">
+  💬
+</a>
+
+  <script src="counselor.js"></script>
+</body>
+</html>

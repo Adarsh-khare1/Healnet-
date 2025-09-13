@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login | Healnet</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">Healnet</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="resources.html">Resource Hub</a></li>
+      <li><a href="counseling.html">Counseling</a></li>
+      <li><a href="forum.html">Peer Forum</a></li>
+      <li><a href="counselor.html">Counselor Dashboard</a></li>
+      <li><a href="loginadmin.html">Admin</a></li>
+    </ul>
+  </nav>
+
+  <!-- Login Box Container -->
+  <div class="login-container">
+    <div class="login-box">
+      <h2>Admin Login</h2>
+      <form id="loginForm">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Enter username" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter password" required>
+
+        <button type="submit">Login</button>
+        <p id="error-msg"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>

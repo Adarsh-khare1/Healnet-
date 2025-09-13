@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Healnet</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<script>
+  // Protect admin page
+  if(localStorage.getItem("isLoggedIn") !== "true") {
+    window.location.href = "login.html";
+  }
+</script>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="logo">Healnet</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="resourcehub.html">Resource Hub</a></li>
+    <li><a href="appointment.html">Counseling</a></li>
+    <li><a href="forum.html">Peer Forum</a></li>
+    <li><a href="counselor.html">Counselor Dashboard</a></li>
+    <li><a href="#" id="logout-btn">Logout</a></li>
+  </ul>
+</nav>
+
+<!-- Admin Dashboard -->
+<div class="admin-container">
+  <h2>Admin Dashboard</h2>
+
+  <!-- Stats Cards -->
+  <div class="cards">
+    <div class="card">
+      <h3>Total Students Screened</h3>
+      <p>128</p>
+    </div>
+    <div class="card">
+      <h3>Ongoing Counseling</h3>
+      <p>14</p>
+    </div>
+    <div class="card">
+      <h3>New Forum Posts</h3>
+      <p>23</p>
+    </div>
+    <div class="card">
+      <h3>Average Anxiety Score</h3>
+      <p>7.2 / 10</p>
+    </div>
+  </div>
+
+  <!-- Recent Activity Table -->
+  <h3>Recent Student Activity</h3>
+  <table class="activity-table">
+    <thead>
+      <tr>
+        <th>Student ID</th>
+        <th>Action</th>
+        <th>Date & Time</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ST123</td>
+        <td>Completed Screening</td>
+        <td>10 Sep 2025 08:15</td>
+        <td>✅</td>
+      </tr>
+      <tr>
+        <td>ST124</td>
+        <td>Requested Counseling</td>
+        <td>10 Sep 2025 09:20</td>
+        <td>Pending</td>
+      </tr>
+      <tr>
+        <td>ST125</td>
+        <td>Forum Post</td>
+        <td>10 Sep 2025 10:05</td>
+        <td>Reviewed</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<a href="chatbot.html" id="chat-button" aria-label="Chat with CampusCare">
+  💬
+</a>
+
+<script src="admin.js"></script>
+<script>
+  // Logout functionality
+  document.getElementById("logout-btn").addEventListener("click", function() {
+    localStorage.removeItem("isLoggedIn");
+    window.location.href = "login.html";
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+/* Body and Navbar are already defined by you */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg,#a8edea,#fed6e3);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar remains the same as your code */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #4a90e2;
+  padding: 12px 24px;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo { font-size: 22px; font-weight: bold; }
+
+.nav-links { list-style: none; display: flex; gap: 18px; }
+
+.nav-links li { display: inline; }
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover { color: #ffd700; }
+
+/* LOGIN BOX STYLING */
+
+/* Container to center login box */
+.login-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* Login Box */
+.login-box {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.login-box h2 {
+  margin-bottom: 25px;
+  color: #333;
+  font-size: 26px;
+}
+
+/* Form inside login box */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+form label { font-weight: bold; }
+
+form input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  font-size: 16px;
+}
+
+form input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+}
+
+button {
+  padding: 12px;
+  background: #4a90e2;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+button:hover { background: #357ABD; }
+
+#error-msg {
+  color: #ff4c4c;
+  margin-top: 10px;
+  font-size: 14px;
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healnet</title>
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="style.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navbar -->
+<nav class="navbar">
+  <div class="logo">Healnet</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="resources.html">Resource Hub</a></li>
+    <li><a href="appointment.html">Counseling</a></li>
+    <li><a href="forum.html">Peer Forum</a></li>
+    <li><a href="counselor.html">Counselor Dashboard</a></li>
+    <li><a href="loginadmin.html">Admin</a></li>
+  </ul>
+</nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Welcome to Healnet</h1>
+      <p>Your mental wellness companion for higher education 🌱</p>
+      <button onclick="scrollToSection('features')">Explore Features</button>
+    </div>
+    <div class="hero-animation"></div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <h2>What We Offer</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>AI Chat Support</h3>
+        <p>Get instant advice and coping strategies from our AI-powered assistant 🤖</p>
+      </div>
+      <div class="feature-card">
+        <h3>Screening Tests</h3>
+        <p>Quick mental health assessments with immediate results 📊</p>
+      </div>
+      <div class="feature-card">
+        <h3>Peer Forum</h3>
+        <p>Connect with other students in a safe, moderated environment 💬</p>
+      </div>
+      <div class="feature-card">
+        <h3>Counseling Support</h3>
+        <p>Confidential booking and chat/video sessions with professional counselors 🎥</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <h2>What Students Say</h2>
+    <div class="testimonial-slider">
+      <div class="testimonial-slide active">
+        <p>"Healnet helped me manage my stress during exams. The AI chat is amazing!"</p>
+        <span>- Priya K.</span>
+      </div>
+      <div class="testimonial-slide">
+        <p>"I feel supported even when I can't reach the counselor in person. Highly recommend!"</p>
+        <span>- Rahul S.</span>
+      </div>
+      <div class="testimonial-slide">
+        <p>"The peer forum is a safe place to share and learn. Very interactive!"</p>
+        <span>- Ananya M.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call-to-Action Section -->
+  <section class="cta">
+    <h2>Ready to Improve Your Mental Wellness?</h2>
+    <button onclick="scrollToSection('features')">Get Started Now</button>
+  </section>
+  <a href="chatbot.html" id="chat-button" aria-label="Chat with CampusCare">
+  💬
+</a>
+
+  <script src="home.js"></script>
+  <script>
+  window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+</body>
+</html>
