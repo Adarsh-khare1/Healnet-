@@ -52,7 +52,7 @@ async function sendMessage() {
     const data = await res.json();
     appendMessage(data.reply, "bot");
 
-    totalTokensUsed = data.totalTokens; // update from backend
+    totalTokensUsed = data.totalTokens;
     updateTokenDisplay();
   } catch (err) {
     console.error("Chat error:", err);
@@ -67,16 +67,6 @@ userInput.addEventListener("keypress", (e) => {
 
 // Send on button click
 sendBtn.addEventListener("click", sendMessage);
-
-// Reset tokens (optional)
-function resetTokens() {
-  fetch("https://healnet-0eyd.onrender.com/tokens", { method: "PATCH" }) // optional endpoint if you add
-    .then(() => {
-      totalTokensUsed = 0;
-      updateTokenDisplay();
-      appendMessage("Tokens reset to 0", "bot");
-    });
-}
 
 // Fetch tokens on page load
 fetchTotalTokens();
